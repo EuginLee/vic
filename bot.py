@@ -11,8 +11,14 @@ Author: liuhh02 https://medium.com/@liuhh02
 """
 
 import logging
-from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, InlineQueryHandler
 import os
+
+# from telegram.ext import Updater, InlineQueryHandler, CommandHandler
+from telegram.ext.dispatcher import run_async
+import requests
+import re
+
 PORT = int(os.environ.get('PORT', 5000))
 
 TOKEN = '1197056727:AAFeVAmjnp-XW74roTXsorfkXwNwzVIUVEk'
@@ -30,17 +36,37 @@ def start(update, context):
     """Send a message when the command /start is issued."""
     update.message.reply_text('Hi!')
 
-def help(update, context):
-    """Send a message when the command /help is issued."""
-    update.message.reply_text('Help!')
+def get_url():
+    contents = requests.get('https://dog.ceo/api/breed/pembroke/images/random').json()
+    url = contents['message']
+    return url
 
-def echo(update, context):
-    """Echo the user message."""
-    update.message.reply_text(update.message.text)
+def get_image_url():
+    allowed_extension = ['jpg','jpeg','png']
+    file_extension = ''
+    while file_extension not in allowed_extension:
+        url = get_url()
+        file_extension = re.search("([^.]*)$",url).group(1).lower()
+    return url
 
-def error(update, context):
-    """Log Errors caused by Updates."""
-    logger.warning('Update "%s" caused error "%s"', update, context.error)
+@run_async
+def bop(update, context):
+    url = get_image_url()
+    chat_id = update.message.chat_id
+    context.bot.send_photo(chat_id=chat_id, photo=url)
+
+
+# def help(update, context):
+#     """Send a message when the command /help is issued."""
+#     update.message.reply_text('Help!')
+
+# def echo(update, context):
+#     """Echo the user message."""
+#     update.message.reply_text(update.message.text)
+
+# def error(update, context):
+#     """Log Errors caused by Updates."""
+#     logger.warning('Update "%s" caused error "%s"', update, context.error)
 
 def main():
     """Start the bot."""
@@ -55,6 +81,7 @@ def main():
     # on different commands - answer in Telegram
     dp.add_handler(CommandHandler("start", start))
     dp.add_handler(CommandHandler("help", help))
+    dp.add_handler(CommandHandler('woof',bop))
 
     # on noncommand i.e message - echo the message on Telegram
     dp.add_handler(MessageHandler(Filters.text, echo))
