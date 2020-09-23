@@ -62,7 +62,8 @@ def come(update, context):
             "https://media.giphy.com/media/8Bbl0U61TN6DK/giphy.gif",\
             "https://media.giphy.com/media/eeUJaTwsHh3tswkaYm/giphy.gif",\
             "https://media.giphy.com/media/ITMf6qQnqNLFu/giphy.gif",\
-            "https://media.giphy.com/media/rcw4NNFE6JioM/giphy.gif"]
+            "https://media.giphy.com/media/rcw4NNFE6JioM/giphy.gif",\
+            "https://media.giphy.com/media/WAkTocsutMLrG/giphy.gif"]
     url = random.choice(urls)
     chat_id = update.message.chat_id
     context.bot.send_animation(chat_id=chat_id, animation=url)
@@ -80,7 +81,15 @@ def play(update, context):
 def wdab(update, context):
     urls = ["https://media.giphy.com/media/mP94uHyKvY1nq/giphy.gif",\
             "https://media.giphy.com/media/xT9IgpxorXdkhoQle8/giphy.gif",\
-            "https://media.giphy.com/media/GUx4WVQJLESaI/giphy.gif" ]
+            "https://media.giphy.com/media/GUx4WVQJLESaI/giphy.gif",
+            "https://media.giphy.com/media/l0Nwz1ehUndfqL9MQ/giphy.gif",\
+            "https://media.giphy.com/media/3oKIPvl6VJA7wHzIFa/giphy.gif"\
+            "https://media.giphy.com/media/KY3VnTOONvgxllVac0/giphy.gif"\
+            "https://media.giphy.com/media/L3K0C906B21wY/giphy.gif"\
+            "https://media.giphy.com/media/WRWykrFkxJA6JJuTvc/giphy.gif"\
+            "https://media.giphy.com/media/dXckBa1HDG86RqUh19/giphy.gif"\
+            "https://media.giphy.com/media/THXT0zOw7j7si9PYPS/giphy.gif"
+             ]
     url = random.choice(urls)
     chat_id = update.message.chat_id
     context.bot.send_animation(chat_id=chat_id, animation=url)
