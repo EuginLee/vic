@@ -59,12 +59,31 @@ def bop(update, context):
 def come(update, context):
     urls = ["https://media.giphy.com/media/vGo2sgzeC8r60/giphy.gif",\
             "https://media.giphy.com/media/RuP38JSfj14je/giphy.gif",\
-            "https://media.giphy.com/media/8Bbl0U61TN6DK/giphy.gif"]
+            "https://media.giphy.com/media/8Bbl0U61TN6DK/giphy.gif",\
+            "https://media.giphy.com/media/eeUJaTwsHh3tswkaYm/giphy.gif",\
+            "https://media.giphy.com/media/ITMf6qQnqNLFu/giphy.gif",\
+            "https://media.giphy.com/media/rcw4NNFE6JioM/giphy.gif"]
     url = random.choice(urls)
-
     chat_id = update.message.chat_id
     context.bot.send_animation(chat_id=chat_id, animation=url)
 
+def play(update, context):
+    urls = ["https://media.giphy.com/media/kgKo71L43f85O/giphy.gif",\
+            "https://media.giphy.com/media/7jsnB2RRzDGIo/giphy.gif",\
+            "https://media.giphy.com/media/7NUdxH6uzeI1i/giphy.gif",\
+            "https://media.giphy.com/media/bWS1Vh9mVkcZq/giphy.gif",\
+            "https://media.giphy.com/media/ZjUjG4xgRiSOc/giphy.gif" ]
+    url = random.choice(urls)
+    chat_id = update.message.chat_id
+    context.bot.send_animation(chat_id=chat_id, animation=url)
+
+def wdab(update, context):
+    urls = ["https://media.giphy.com/media/mP94uHyKvY1nq/giphy.gif",\
+            "https://media.giphy.com/media/xT9IgpxorXdkhoQle8/giphy.gif",\
+            "https://media.giphy.com/media/GUx4WVQJLESaI/giphy.gif" ]
+    url = random.choice(urls)
+    chat_id = update.message.chat_id
+    context.bot.send_animation(chat_id=chat_id, animation=url)
 
 # def help(update, context):
 #     """Send a message when the command /help is issued."""
@@ -90,9 +109,11 @@ def main():
 
     # on different commands - answer in Telegram
     dp.add_handler(CommandHandler("start", start))
-    dp.add_handler(CommandHandler("help", help))
+    #dp.add_handler(CommandHandler("help", help))
     dp.add_handler(CommandHandler('woof',bop))
     dp.add_handler(CommandHandler('come',come))
+    dp.add_handler(CommandHandler('play',play))
+    dp.add_handler(CommandHandler('wdab',wdab))
 
     # on noncommand i.e message - echo the message on Telegram
     #dp.add_handler(MessageHandler(Filters.text, echo))
