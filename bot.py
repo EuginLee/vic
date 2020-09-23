@@ -55,6 +55,11 @@ def bop(update, context):
     chat_id = update.message.chat_id
     context.bot.send_photo(chat_id=chat_id, photo=url)
 
+def come(update, context):
+    url = "https://media.giphy.com/media/vGo2sgzeC8r60/giphy.gif"
+    chat_id = update.message.chat_id
+    context.bot.send_animation(chat_id=chat_id, animation=url)
+
 
 # def help(update, context):
 #     """Send a message when the command /help is issued."""
@@ -82,6 +87,7 @@ def main():
     dp.add_handler(CommandHandler("start", start))
     dp.add_handler(CommandHandler("help", help))
     dp.add_handler(CommandHandler('woof',bop))
+    dp.add_handler(CommandHandler('come',come))
 
     # on noncommand i.e message - echo the message on Telegram
     #dp.add_handler(MessageHandler(Filters.text, echo))
