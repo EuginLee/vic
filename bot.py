@@ -18,6 +18,7 @@ import os
 from telegram.ext.dispatcher import run_async
 import requests
 import re
+import random
 
 PORT = int(os.environ.get('PORT', 5000))
 
@@ -56,7 +57,11 @@ def bop(update, context):
     context.bot.send_photo(chat_id=chat_id, photo=url)
 
 def come(update, context):
-    url = "https://media.giphy.com/media/vGo2sgzeC8r60/giphy.gif"
+    urls = ["https://media.giphy.com/media/vGo2sgzeC8r60/giphy.gif",\
+            "https://media.giphy.com/media/RuP38JSfj14je/giphy.gif",\
+            "https://media.giphy.com/media/8Bbl0U61TN6DK/giphy.gif"]
+    url = random.choice(urls)
+
     chat_id = update.message.chat_id
     context.bot.send_animation(chat_id=chat_id, animation=url)
 
